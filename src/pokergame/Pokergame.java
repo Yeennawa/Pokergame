@@ -1,60 +1,80 @@
 package pokergame;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Pokergame {
+
     Player player = new Player();
-    Bot bot = new Bot();
+    Player bot = new Player();
     Random rand = new Random();
-    Scanner sc = new Scanner(System.in);
-    public void start() {
-        while (player.isAlive() && bot.isAlive()) {
 
-            player.total = draw() + draw();
-            player.total %= 10;
-            System.out.println("Player: " + player.total);
+    int p1,p2,p3=-1;
+    int b1,b2,b3=-1;
 
-            System.out.println("จะเพิ่มใบที่ 3 ไหม (Y/N)");
-            String choice = sc.next();
+    public void deal(){
 
-            if (choice.equalsIgnoreCase("Y")) {
-                player.total += draw();
-                player.total %= 10;
-                System.out.println("Player: " + player.total);
-            }
+        p3=-1;
+        b3=-1;
 
-            bot.total = draw() + draw();
-            bot.total %= 10;
+        p1 = draw();
+        p2 = draw();
 
-            if (bot.total < 4) {
-                bot.total += draw();
-                bot.total %= 10;
-            }
+        b1 = draw();
+        b2 = draw();
+    }
 
-            System.out.println("Bot: " + bot.total);
+    public void playerDraw(){
+        p3 = draw();
+    }
 
-            if (player.total > bot.total) {
-                bot.losehearts();
-                System.out.println("รอบนี้ผู้เล่นชนะ");
-            } else if (player.total < bot.total) {
-                player.losehearts();
-                System.out.println("รอบนี้บอทชนะ");
-            } else {
-                System.out.println("เสมอ");
-            }
+    public void botDraw(){
 
-            System.out.println("------------------");
+        bot.total = cardValue(b1)+cardValue(b2);
+        bot.total %=10;
+
+        if(bot.total<4){
+            b3 = draw();
+        }
+    }
+
+    public int playerTotal(){
+
+        int t = cardValue(p1)+cardValue(p2);
+
+        if(p3>0) t+=cardValue(p3);
+
+        return t%10;
+    }
+
+    public int botTotal(){
+
+        int t = cardValue(b1)+cardValue(b2);
+
+        if(b3>0) t+=cardValue(b3);
+
+        return t%10;
+    }
+
+    public String judge(){
+
+        if(playerTotal()>botTotal()){
+            bot.losehearts();
+            return "PLAYER WIN";
+        }
+        else if(playerTotal()<botTotal()){
+            player.losehearts();
+            return "BOT WIN";
         }
 
-        if (player.isAlive()) {
-            System.out.println("YOU WIN THE GAME 🎉");
-        } else {
-            System.out.println("BOT WINS 🤖");
-        }
+        return "DRAW";
     }
 
     public int draw(){
         return rand.nextInt(13)+1;
+    }
+
+    public int cardValue(int n){
+        if(n>=10) return 10;
+        return n;
     }
 }

@@ -1,8 +1,7 @@
-import pokergame.Pokergame;
+import pokergame.GameFrame;
 
 public class Main {
     public static void main(String[] args) {
-        Pokergame pokergame = new Pokergame();
-        pokergame.start();
+        new GameFrame();
     }
 }
