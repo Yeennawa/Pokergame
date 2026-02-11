@@ -128,7 +128,7 @@ public class GamePanel extends JPanel {
 
     JLabel background(){
 
-        java.net.URL bg = getClass().getResource("/Ingame.jpg");
+        java.net.URL bg = getClass().getResource("/Pokerimgame/Ingame.jpg");
 
         if(bg==null){
             System.out.println("ไม่เจอพื้นหลัง");
