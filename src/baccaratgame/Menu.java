@@ -36,7 +36,7 @@ public class Menu extends JPanel {
     }
 
     private JLabel background() {
-        java.net.URL imgURL = getClass().getResource("/Pokerimgame/Game front page.jpg");
+        java.net.URL imgURL = getClass().getResource("/Baccaratimgame/Game front page.jpg");
         ImageIcon background;
 
         if (imgURL != null) {

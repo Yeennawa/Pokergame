@@ -108,7 +108,7 @@ public class GamePanel extends JPanel {
                 "J-H.png","Q-H.png","K-H.png"
         };
 
-        return load("/Pokerimgame/"+cards[num-1]);
+        return load("/Baccaratimgame/" +cards[num-1]);
     }
 
     ImageIcon load(String path){
@@ -128,7 +128,7 @@ public class GamePanel extends JPanel {
 
     JLabel background(){
 
-        java.net.URL bg = getClass().getResource("/Pokerimgame/Ingame.jpg");
+        java.net.URL bg = getClass().getResource("/Baccaratimgame/Ingame.jpg");
 
         if(bg==null){
             System.out.println("ไม่เจอพื้นหลัง");
